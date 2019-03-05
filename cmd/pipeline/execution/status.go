@@ -15,55 +15,58 @@
 package execution
 
 import (
-	"errors"
 	"fmt"
+	"net/http"
+
 	"github.com/spf13/cobra"
 	"github.com/daniel-pittman/spin/cmd/gateclient"
 	"github.com/daniel-pittman/spin/util"
-	"net/http"
 )
 
 var (
-	cancelExecutionShort = "Cancel the executions for the provided execution id"
-	cancelExecutionLong  = "Cancel the executions for the provided execution id"
+	statusExecutionShort = "Get the status of an execution"
+	statusExecutionLong  = "Get the status of an execution with the provided event id "
 )
 
-func NewCancelCmd() *cobra.Command {
+func NewStatusCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "cancel",
-		Short: cancelExecutionShort,
-		Long:  cancelExecutionLong,
-		RunE:  cancelExecution,
+		Use:   "status",
+		Short: statusExecutionShort,
+		Long:  statusExecutionLong,
+		RunE:  getExecutionStatus,
 	}
-
 	return cmd
 }
 
-func cancelExecution(cmd *cobra.Command, args []string) error {
+func getExecutionStatus(cmd *cobra.Command, args []string) error {
 	gateClient, err := gateclient.NewGateClient(cmd.InheritedFlags())
 	if err != nil {
 		return err
 	}
 
-	executionId, err := util.ReadArgsOrStdin(args)
-	if executionId == "" {
-		return errors.New("no execution id supplied, exiting")
+	id, err := util.ReadArgsOrStdin(args)
+	if err != nil {
+		return err
 	}
 
-	resp, err := gateClient.PipelineControllerApi.CancelPipelineUsingPUT1(gateClient.Context,
-		executionId,
-		map[string]interface{}{})
+	executions := make([]interface{}, 0)
+	executions, resp, err := gateClient.ExecutionsControllerApi.SearchForPipelineExecutionsByTriggerUsingGET(
+		gateClient.Context,
+		"*",
+		map[string]interface{}{
+			"eventId": id,
+		})
 
 	if err != nil {
 		return err
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("encountered an error canceling execution with id %s, status code: %d\n",
-			executionId,
+		return fmt.Errorf("Encountered an error getting execution %s, status code: %d\n",
+			id,
 			resp.StatusCode)
 	}
 
-	util.UI.Info(util.Colorize().Color(fmt.Sprintf("[reset][bold][green]Execution %s successfully canceled", executionId)))
+	util.UI.JsonOutput(executions[0], util.UI.OutputFormat)
 	return nil
 }

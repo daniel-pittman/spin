@@ -23,7 +23,7 @@ import (
 	"strings"
 	"testing"
 
-	gate "github.com/spinnaker/spin/gateapi"
+	gate "github.com/daniel-pittman/spin/gateapi"
 )
 
 // TODO(jacobkiefer): This test overlaps heavily with pipeline_save_test.go,

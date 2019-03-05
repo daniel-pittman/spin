@@ -15,10 +15,10 @@
 package auth
 
 import (
-	"github.com/spinnaker/spin/config/auth/basic"
-	"github.com/spinnaker/spin/config/auth/iap"
-	"github.com/spinnaker/spin/config/auth/oauth2"
-	"github.com/spinnaker/spin/config/auth/x509"
+	"github.com/daniel-pittman/spin/config/auth/basic"
+	"github.com/daniel-pittman/spin/config/auth/iap"
+	"github.com/daniel-pittman/spin/config/auth/oauth2"
+	"github.com/daniel-pittman/spin/config/auth/x509"
 )
 
 // AuthConfig is the CLI's authentication configuration.

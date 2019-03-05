@@ -2,7 +2,7 @@ package pipeline
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/spinnaker/spin/cmd/pipeline/execution"
+	"github.com/daniel-pittman/spin/cmd/pipeline/execution"
 	"io"
 )
 

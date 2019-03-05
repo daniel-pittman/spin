@@ -18,8 +18,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/spinnaker/spin/cmd/gateclient"
-	"github.com/spinnaker/spin/util"
+	"github.com/daniel-pittman/spin/cmd/gateclient"
+	"github.com/daniel-pittman/spin/util"
 	"net/http"
 )
 

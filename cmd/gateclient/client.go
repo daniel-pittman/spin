@@ -31,10 +31,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/spinnaker/spin/config"
-	iap "github.com/spinnaker/spin/config/auth/iap"
-	"github.com/spinnaker/spin/util"
-	"github.com/spinnaker/spin/version"
+	"github.com/daniel-pittman/spin/config"
+	iap "github.com/daniel-pittman/spin/config/auth/iap"
+	"github.com/daniel-pittman/spin/util"
+	"github.com/daniel-pittman/spin/version"
 
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/pflag"
@@ -43,7 +43,7 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 
-	gate "github.com/spinnaker/spin/gateapi"
+	gate "github.com/daniel-pittman/spin/gateapi"
 	"golang.org/x/oauth2"
 )
 

@@ -11,7 +11,7 @@ Follow the instructions at [spinnaker.io](https://www.spinnaker.io/guides/spin/c
 Fetch the code
 
 ```bash
-go get github.com/spinnaker/spin
+go get github.com/daniel-pittman/spin
 ```
 
 **Note**: If you are using two-factor authentication with ssh keys to authenticate with GitHub,
@@ -26,7 +26,7 @@ for the `go get` command to work properly.
 Enter the code's directory
 
 ```bash
-cd $GOPATH/src/github.com/spinnaker/spin
+cd $GOPATH/src/github.com/daniel-pittman/spin
 ```
 
 Fetch dependencies and build with with
